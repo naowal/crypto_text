@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class CryptoStatement:
-    """Class for keeping track of an item in inventory."""
+    """Class for keeping track of an item in statement."""
     buy_or_sell: str
     crypto_name: str
     price_per_coin: float = 0
@@ -13,16 +13,19 @@ class __main__:
     crypto_sum = []
     count = 0
     net_profit = 0
+
     with open("file.txt") as fp:
+        """Read line by line until no line"""
         while True:
             count = count+1
             line = fp.readline()
+
             if not line:
                 break
-
+            
             x = line.split()
             crypto_sum.append(CryptoStatement(str(x[0]),str(x[1]),float(x[2]),float(x[3])))
-            length = len(crypto_sum)
+
             if(crypto_sum[-1].buy_or_sell == 'S'):
                 crypto_indices = []
                 b_crypto_sum = 0
